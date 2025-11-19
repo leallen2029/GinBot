@@ -1,11 +1,14 @@
 def show_hand(label, hand):
     '''prints something like: Your hand: [0:A♠] [1:7♥] [2:7♣]'''
-    print("Your hand: [", "]")
+    print("Your hand: [",def deal_hand(deck,a), "]")
 
 def show_top_of_discard(discard):
     '''prints the top card or says (empty)'''
-    if 
-
+    if card in discard:
+        print(discard(range[0]))
+    else:
+        print("empty")
+        
 def ask_choice(prompt, options):
     '''shows options Draw deck, Take discard, and return the chosen number'''
 
