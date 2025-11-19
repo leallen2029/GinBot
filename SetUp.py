@@ -1,4 +1,3 @@
-
 import random
 
 
@@ -21,6 +20,7 @@ def shuffle_deck(deck):
     random.shuffle(deck)
     
     return(deck)
+
 def deal_hand(deck,a):
     hand = []
     for _ in range(a):
@@ -44,7 +44,5 @@ def main ():
 if __name__ == "__main__":
     main()
 
-    
-    
 
 
