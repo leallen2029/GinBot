@@ -26,7 +26,15 @@ def deal_hand(deck,a):
     for _ in range(a):
         hand.append(deck.pop(0))
     return (hand)
-     
+
+def draw_from_stock():
+    return deck.pop()
+
+def draw_from_discard():
+    return discard.pop
+
+def card_points(card):
+    
 def main ():
     deck = make_deck()
     shuffle_deck(deck)
