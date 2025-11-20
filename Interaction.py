@@ -1,5 +1,13 @@
 def show_hand(label, hand):
     '''prints something like: Your hand: [0:A♠] [1:7♥] [2:7♣]'''
+    text = label + ""
+    idx = 0
+    while idx < len(hand):
+        new_idx = hand[new_idx] 
+        text = text, str(idx), ":", card
+        idx = idx + 1
+    print(text)
+        
     print("Your hand: [",def deal_hand(deck,a), "]")
 
 def show_top_of_discard(discard):
