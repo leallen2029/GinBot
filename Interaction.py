@@ -47,9 +47,9 @@ def ask_index(prompt, limit):
         i = input(">")
          
     '''makes sure input is a digit'''
-        if i.isdigit():
-            num = int(i)
-            if 0 <= num < limit:
-                return num
-        else:    
-            print("Invalid index.")
+    if i.isdigit():
+        num = int(i)
+        if 0 <= num < limit:
+            return num
+    else:    
+        print("Invalid index.")
