@@ -6,12 +6,13 @@ import random
             "2♦", "3♦", "4♦", "5♦", "6♦","7♦","8♦","9♦", "10♦", "J♦", "Q♦", "K♦", "A♦",
             "2♣", "3♣", "4♣", "5♣", "6♣","7♣","8♣","9♣", "10♣", "J♣", "Q♣", "K♣", "A♣"]"""
 
+suits = "♠", "♥", "♦", "♣"
+ranks = "A","2","3","4","5","6","7","8","9","10","J","Q","K",
+
 
 def make_deck():
     """ this will be the central storage for the deck and be able to shuffle the deck before playing """
     
-    suits = "♠", "♥", "♦", "♣"
-    ranks = "A","2","3","4","5","6","7","8","9","10","J","Q","K",
     deck = [r+s for r in ranks for s in suits]
     return(deck)
 
@@ -31,7 +32,7 @@ def draw_from_stock(deck):
     return deck.pop()
 
 def draw_from_discard(discard):
-    return discard.pop
+    return discard.pop()
 
 def card_points(card):
     """Asigns each card with there gin rummy scoring"""
@@ -44,9 +45,7 @@ def card_points(card):
     return int(rank)
 
 def find_sets(hand):
-    """
-    Return all 3+ of a kind melds.
-    """
+    """Return all 3+ of a kind melds"""
     rank_groups = {}
     for card in hand:
         rank = card[:-1]
@@ -58,10 +57,7 @@ def find_sets(hand):
             melds.append(group)
     return melds
 def find_runs(hand):
-    """
-    Return runs 3+ same suit in a row.
-    Example: ['4♣','5♣','6♣'] → one run.
-    """
+    """Return runs 3+ same suit in a row"""
     suit_groups = {"♠": [], "♥": [], "♦": [], "♣": []}
 
     # separate by suit
@@ -83,10 +79,10 @@ def find_runs(hand):
         temp_run = [sorted_cards[0][0]] if sorted_cards else []
 
         for i in range(1, len(sorted_cards)):
-            prev_rank = sorted_cards[i-1][1]
-            curr_rank = sorted_cards[i][1]
+            previous_rank = sorted_cards[i-1][1]
+            current_rank = sorted_cards[i][1]
 
-            if rank_order.index(curr_rank) - rank_order.index(prev_rank) == 1:
+            if rank_order.index(current_rank) - rank_order.index(previous_rank) == 1:
                 temp_run.append(sorted_cards[i][0])
             else:
                 if len(temp_run) >= 3:
@@ -99,11 +95,8 @@ def find_runs(hand):
     return all_runs
 
 def pick_melds_and_deadwood(hand):
-    """
-    Choose all runs + sets.
-    Priority: use runs first (longest melds), then sets.
-    Returns (list_of_melds, leftover_cards).
-    """
+    """Choose all runs + sets and uses runs first (longest melds),
+        then sets.Returns (list_of_melds, leftover_cards) """
     hand_copy = hand[:]
     melds = []
 
@@ -137,8 +130,7 @@ def knocks(hand, limit):
     return deadwood_points(leftover) <= limit
 
 
-if __name__ == "__main__":
-    main()
+
 
 
 

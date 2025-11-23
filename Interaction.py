@@ -20,36 +20,34 @@ def show_top_of_discard(discard):
     else:
         print("empty")
 
-  
-  
 def ask_choice(prompt, options):
-    '''shows options Draw deck, Take discard, and return the chosen number'''
+    '''shows options (Draw deck, Take discard, etc.) and returns the chosen key'''
     while True:
         print(prompt)
-        
         for key in options:
             print(key, ":", options[key])
-            
-        my = input(">")
-        
-        if my in options:
-            return(my) #there is a chance this will not print my correctly
-        
+
+        choice = input("> ")
+
+        if choice in options:
+            return choice
+
         print("Invalid.\n")
 
-
-
 def ask_index(prompt, limit):
-    '''asks for a number and return it this tells us which card to discard'''
+    '''asks for a number and return it; this tells us which card to discard'''
     while True:
         print(prompt)
         print("You can only pick a number between 0 and", limit - 1)
         i = input(">")
-         
-    '''makes sure input is a digit'''
-    if i.isdigit():
-        num = int(i)
-        if 0 <= num < limit:
-            return num
-    else:    
+
+        # makes sure input is a digit
+        if i.isdigit():
+            num = int(i)
+            if 0 <= num < limit:
+                return num
+
         print("Invalid index.")
+
+
+

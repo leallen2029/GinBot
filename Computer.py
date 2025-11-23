@@ -1,4 +1,4 @@
-from SetUp.py import ranks
+
 
 def get_rank(card):
     """Gets the rank part of a card string."""
