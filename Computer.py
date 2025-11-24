@@ -1,4 +1,4 @@
-
+from SetUp import pick_melds_and_deadwood, deadwood_points 
 
 def get_rank(card):
     """Gets the rank part of a card string."""
@@ -9,17 +9,6 @@ def get_suit(card):
     """Gets the suit part of a card string."""
     return card[-1]
 
-
-def card_points(card):
-    """ Returns the point value for one card.
-    A = 1 & J/Q/K = 10"""
-    
-    g = get_rank(card)
-    if g == "A":
-        return 1
-    if g == "J" or g == "Q" or g == "K":
-        return 10
-    return int(g)
 
 def ai_draw_choice(ai_hand, upcard):
     """
@@ -100,14 +89,16 @@ def ai_discard_index(ai_hand):
 def ai_wants_to_knock(ai_hand, limit):
     """
     Decides if the AI should knock
-      - Estimate deadwood as total card_points in ai hand.
-      - If total <= limit + 3, computer will knock.
+      - use deadwood amount as total card_points in ai hand.
+      - If dead <= limit, computer will knock.
     """
-    total = 0
-    i = 0
-    while i < len(ai_hand):
-        total = total + card_points(ai_hand[i])
-        i = i + 1
 
-    return total <= limit + 3
+    # get all cards that aren't in a meld
+    melds, leftover = pick_melds_and_deadwood(ai_hand)
+
+    # calculates deadwood points
+    dead = deadwood_points(leftover)
+
+    # AI knocks if its deadwood is low enough
+    return dead <= limit
         
