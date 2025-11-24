@@ -129,8 +129,3 @@ def knocks(hand, limit):
     melds, leftover = pick_melds_and_deadwood(hand)
     return deadwood_points(leftover) <= limit
 
-
-
-
-
-
