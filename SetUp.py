@@ -35,7 +35,7 @@ def draw_from_discard(discard):
     return discard.pop()
 
 def card_points(card):
-    """Asigns each card with there gin rummy scoring"""
+    """Asigns each card with there gin rummy scoring: A = 1 & J/Q/K = 10"""
     rank = card[:-1]  # removes suit
 
     if rank == "A":
