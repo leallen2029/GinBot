@@ -58,6 +58,7 @@ def player_turn(state):
     discard.append(discarded_card)
     
     return None
+
 def computer_turn(state):
     '''choose draw source, maybe knock?, choose a discard, updates state'''
     
@@ -141,5 +142,7 @@ def play_round(player_name):
         a_dead = deadwood_points(ai_left)
         winner = "player" if p_dead < a_dead else "computer"
         return winner, p_dead, a_dead
+    
+    return score_round(state, knocker)
     
     
