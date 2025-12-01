@@ -1,4 +1,4 @@
-from SetUp import make_deck, shuffle_deck, deal_hand, draw_from_stock, draw_from_discard, pick_melds_and_deadwood, deadwood_points
+from SetUp import find_runs, make_deck, shuffle_deck, deal_hand, draw_from_stock, draw_from_discard, pick_melds_and_deadwood, deadwood_points
 from Interaction import show_hand, show_top_of_discard, ask_choice, ask_index
 from Computer import ai_draw_choice, ai_discard_index, ai_wants_to_knock
 
