@@ -2,8 +2,6 @@ from SetUp import make_deck, shuffle_deck, deal_hand, draw_from_stock, draw_from
 from Interaction import show_hand, show_top_of_discard, ask_choice, ask_index
 from Computer import ai_draw_choice, ai_discard_index, ai_wants_to_knock
 
-"""uses the functions from Setup.py"""
-
 
 def start_round():
     '''make/shuffle a deck, deal 10 to the player and 10 to the computer'''
@@ -48,6 +46,7 @@ def player_turn(state):
             
     if choice == "1":
         card = draw_from_stock(deck)
+        print("You drew a", card) 
     else:
         card = discard.pop()
         
