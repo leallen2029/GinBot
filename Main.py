@@ -19,7 +19,7 @@ def main():
     
     print ("Gin Rummy! \nCreated By: Landree Allen & Madeleine Lucas")
     
-    player_name = input("Name: ")
+    player_name = input("Name: ") # save highest score after graphics
     
     while True:
         print("\nNew Round:\n")
