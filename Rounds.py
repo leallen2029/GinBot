@@ -13,6 +13,7 @@ def start_round():
     
     discard = [deck.pop()]
     
+    #stores the values for the following variables into one variable
     state = {
     "deck": deck,
     "discard": discard,
@@ -48,7 +49,7 @@ def player_turn(state):
         card = draw_from_stock(deck)
         print("You drew a", card) 
     else:
-        card = discard.pop()
+        card = discard.pop() #gets top of discard
         
     player.append(card) #adds card to player list
     

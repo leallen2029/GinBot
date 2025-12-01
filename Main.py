@@ -1,9 +1,21 @@
 '''this is main'''
 
+
 from Rounds import play_round
+import graphics
+WIDTH = 1000
+HEIGHT = 1000
 
 def main():
     """our main funcion that will be able to run the game from several files"""
+     # creates the canvass window for the graphics
+    win = graphics.GraphWin("GINBOT",WIDTH,HEIGHT)
+
+    # Sets the coordinate system
+    win.setCoords(0,0, WIDTH, HEIGHT)
+
+    # changes the background color
+    win.setBackground("green") # <-- comment later
     
     print ("Gin Rummy! \nCreated By: Landree Allen & Madeleine Lucas")
     
