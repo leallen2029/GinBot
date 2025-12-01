@@ -1,4 +1,4 @@
-from SetUp import pick_melds_and_deadwood, deadwood_points 
+from SetUp import pick_melds_and_deadwood, deadwood_points, card_points
 
 def get_rank(card):
     """Gets the rank part of a card string."""
