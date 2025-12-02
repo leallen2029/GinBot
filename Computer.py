@@ -1,18 +1,18 @@
 from SetUp import pick_melds_and_deadwood, deadwood_points, card_points
 
 def get_rank(card):
-    """Gets the rank part of a card string."""
+    """Returns the rank part of a card string."""
     return card[:-1]
 
 
 def get_suit(card):
-    """Gets the suit part of a card string."""
+    """Returns the suit part of a card string."""
     return card[-1]
 
 
 def ai_draw_choice(ai_hand, upcard):
     """
-    whether the Computer should draw from the stock or take the top card from the discard pile.
+    figures whether the Computer should draw from the stock or take the top card from the discard pile.
 
     Strategy:
       - If upcard is None, draw from stock.
@@ -24,7 +24,7 @@ def ai_draw_choice(ai_hand, upcard):
     if upcard is None:
         return "stock"
     
-    # does rank match?
+    # asks if rank matches discard
     up_rank = get_rank(upcard)
     count = 0
     while count < len(ai_hand):
@@ -39,7 +39,7 @@ def ai_draw_choice(ai_hand, upcard):
     up_value = card_points(upcard)
     max_points = 0
     count = 0
-    while count < len(ai_hand):
+    while count < len(ai_hand):  
         card = ai_hand[count]
         value = card_points(card)
         if value > max_points:
@@ -55,7 +55,7 @@ def ai_draw_choice(ai_hand, upcard):
 def ai_discard_index(ai_hand):
     '''gives a strategy for which card to discard and which to keep,
     ensures that it will not seperate potential pairs'''
-    # Count how many cards of each rank (protect pairs)
+    # Counts how many cards of each rank while protecting pairs
     rank_counts = {}
     for card in ai_hand:
         g = get_rank(card)
@@ -77,7 +77,7 @@ def ai_discard_index(ai_hand):
         if rank_counts[r] >= 2:
             continue
 
-        # choose highest value card
+        # chooses the highest value card
         if value > best_value:
             best_value = value
             best_index = index
