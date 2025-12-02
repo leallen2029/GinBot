@@ -22,11 +22,17 @@ def shuffle_deck(deck):
     
     return(deck)
 
-def deal_hand(deck,a):
+def deal_hand(deck, a):
+    '''this function gives you your drawn hand and sorts it from least to most value'''
     hand = []
     for _ in range(a):
         hand.append(deck.pop(0))
-    return (hand)
+
+    # sort from least to most value using card_points
+    hand.sort(key=card_points)
+
+    return hand
+    
 
 def draw_from_stock(deck):
     return deck.pop()
@@ -128,4 +134,3 @@ def deadwood_points(cards):
 def knocks(hand, limit):
     melds, leftover = pick_melds_and_deadwood(hand)
     return deadwood_points(leftover) <= limit
-
