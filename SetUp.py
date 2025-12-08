@@ -7,7 +7,8 @@ import random
             "2♣", "3♣", "4♣", "5♣", "6♣","7♣","8♣","9♣", "10♣", "J♣", "Q♣", "K♣", "A♣"]"""
 
 suits = "♠", "♥", "♦", "♣"
-ranks = "A","2","3","4","5","6","7","8","9","10","J","Q","K",
+ranks = ["A","2","3","4","5","6","7","8","9","10","J","Q","K"]
+
 
 
 def make_deck():
@@ -27,12 +28,10 @@ def deal_hand(deck, a):
     hand = []
     for _ in range(a):
         hand.append(deck.pop(0))
-
-    # sort from least to most value using card_points
-    hand.sort(key=card_points)
-
-    return hand
     
+    hand.sort(key=card_points)
+    
+    return hand
 
 def draw_from_stock(deck):
     return deck.pop()
@@ -44,6 +43,7 @@ def card_points(card):
     """Asigns each card with there gin rummy scoring: A = 1 & J/Q/K = 10"""
     rank = card[:-1]  # removes suit
 
+    #sets the rank and value
     if rank == "A":
         return 1
     if rank in {"J", "Q", "K"}:
@@ -66,7 +66,7 @@ def find_runs(hand):
     """Return runs 3+ same suit in a row"""
     suit_groups = {"♠": [], "♥": [], "♦": [], "♣": []}
 
-    # separate by suit
+    #separate by suit
     for card in hand:
         suit = card[-1]
         rank = card[:-1]
@@ -74,14 +74,14 @@ def find_runs(hand):
 
     all_runs = []
 
-    # convert ranks to numbers
+    #convert ranks to numbers
     rank_order = ["A","2","3","4","5","6","7","8","9","10","J","Q","K"]
 
     for suit, cards in suit_groups.items():
-        # sort cards by numerical order
+        #sort cards by numerical order
         sorted_cards = sorted(cards, key=lambda x: rank_order.index(x[1]))
 
-        # build runs
+        #build runs
         temp_run = [sorted_cards[0][0]] if sorted_cards else []
 
         for i in range(1, len(sorted_cards)):
@@ -106,18 +106,18 @@ def pick_melds_and_deadwood(hand):
     hand_copy = hand[:]
     melds = []
 
-    # get all potential melds
+    #get all potential melds
     possible_runs = find_runs(hand_copy)
     possible_sets = find_sets(hand_copy)
 
-    # choose runs first
+    #choose runs first
     for run in possible_runs:
         melds.append(run)
         for c in run:
             if c in hand_copy:
                 hand_copy.remove(c)
 
-    # then choose sets that still exist
+    #then choose sets that still exist
     for s in possible_sets:
         if all(c in hand_copy for c in s):
             melds.append(s)
@@ -127,6 +127,24 @@ def pick_melds_and_deadwood(hand):
     leftover = hand_copy
     return melds, leftover
 
+def organize_hand(hand):
+    """
+    Groups runs and sets first, then leftover cards.
+    Uses your existing pick_melds_and_deadwood() function.
+    """
+    melds, leftover = pick_melds_and_deadwood(hand)
+
+    organized = []
+
+    #add melds (runs + sets) in the order pick_melds chose them
+    for m in melds:
+        organized.extend(m)
+
+    #add leftovers sorted by value
+    leftover_sorted = sorted(leftover, key=card_points)
+    organized.extend(leftover_sorted)
+
+    return organized
 
 def deadwood_points(cards):
     return sum(card_points(c) for c in cards)
@@ -134,3 +152,33 @@ def deadwood_points(cards):
 def knocks(hand, limit):
     melds, leftover = pick_melds_and_deadwood(hand)
     return deadwood_points(leftover) <= limit
+
+def card_to_file(card):
+    #card looks like "A♠" or "10♥" or "J♦"
+    rank = card[:-1]   
+    suit = card[-1]    
+
+    #convert ranks to words
+    if rank == "A":
+        rank_name = "ace"
+    elif rank == "J":
+        rank_name = "jack"
+    elif rank == "Q":
+        rank_name = "queen"
+    elif rank == "K":
+        rank_name = "king"
+    else:
+        rank_name = rank   
+
+    #convert suits to words
+    if suit == "♠":
+        suit_name = "spades"
+    elif suit == "♥":
+        suit_name = "hearts"
+    elif suit == "♦":
+        suit_name = "diamonds"
+    elif suit == "♣":
+        suit_name = "clubs"
+
+    
+    return f"{rank_name}_of_{suit_name}.png"

@@ -78,7 +78,7 @@ def computer_turn(state):
     if choice == "stock":
         ai.append(draw_from_stock(deck))
     else:
-        ai.append(discard.pop())
+        ai.append(draw_from_discard(state["discard"]))
 
     
     index = ai_discard_index(ai)
@@ -134,7 +134,7 @@ def play_round(player_name):
         result = computer_turn(state)
         if result == "knock":
             knocker = "computer"
-            
+            break
     if knocker is None:
         _, player_left = pick_melds_and_deadwood(state["player"])
         _, ai_left = pick_melds_and_deadwood(state["ai"])

@@ -24,7 +24,7 @@ def ai_draw_choice(ai_hand, upcard):
     if upcard is None:
         return "stock"
     
-    # asks if rank matches discard
+    #asks if rank matches discard
     up_rank = get_rank(upcard)
     count = 0
     while count < len(ai_hand):
@@ -35,7 +35,7 @@ def ai_draw_choice(ai_hand, upcard):
         count = count + 1
 
 
-    # if upcard is cheaper than AI's worst (highest point) card, take it
+    #if upcard is cheaper than AI's worst (highest point) card, take it
     up_value = card_points(upcard)
     max_points = 0
     count = 0
@@ -55,7 +55,7 @@ def ai_draw_choice(ai_hand, upcard):
 def ai_discard_index(ai_hand):
     '''gives a strategy for which card to discard and which to keep,
     ensures that it will not seperate potential pairs'''
-    # Counts how many cards of each rank while protecting pairs
+    #counts how many cards of each rank while protecting pairs
     rank_counts = {}
     for card in ai_hand:
         g = get_rank(card)
@@ -64,7 +64,7 @@ def ai_discard_index(ai_hand):
         else:
             rank_counts[g] = 1
 
-    # Picks the highest-value card that isn't a pair
+    #picks the highest-value card that isn't a pair
     best_index = 0
     best_value = -1
 
@@ -73,11 +73,11 @@ def ai_discard_index(ai_hand):
         r = get_rank(card)
         value = card_points(card)
 
-        # skip pairs
+        #skip pairs
         if rank_counts[r] >= 2:
             continue
 
-        # chooses the highest value card
+        #chooses the highest value card
         if value > best_value:
             best_value = value
             best_index = index
@@ -93,12 +93,12 @@ def ai_wants_to_knock(ai_hand, limit):
       - If dead <= limit, computer will knock.
     """
 
-    # get all cards that aren't in a meld
+    #get all cards that aren't in a meld
     melds, leftover = pick_melds_and_deadwood(ai_hand)
 
-    # calculates deadwood points
+    #calculates deadwood points
     dead = deadwood_points(leftover)
 
-    # AI knocks if its deadwood is low enough
+    #AI knocks if its deadwood is low enough
     return dead <= limit
         

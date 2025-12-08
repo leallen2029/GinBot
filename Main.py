@@ -2,42 +2,25 @@
 
 
 from Rounds import play_round
-import graphics
-WIDTH = 1000
-HEIGHT = 1000
+from Interaction import engine
+
+
 
 def main():
-    """our main funcion that will be able to run the game from several files"""
-     # creates the canvass window for the graphics
-    win = graphics.GraphWin("GINBOT",WIDTH,HEIGHT)
 
-    # Sets the coordinate system
-    win.setCoords(0,0, WIDTH, HEIGHT)
+    player_name = "Player"
 
-    # changes the background color
-    win.setBackground("green") # <-- comment later
-    
-    print ("Gin Rummy! \nCreated By: Landree Allen & Madeleine Lucas")
-    
-    player_name = input("Name: ") # save highest score after graphics
-    
     while True:
-        print("\nNew Round:\n")
+        winner, p_dead, ai_dead = play_round(player_name)
 
-        winner, player_deadwood, ai_deadwood = play_round(player_name)
+        engine.clear_messages()
+        engine.show_message(f"Round Over! Winner: {winner}")
+        engine.show_message(f"Player Deadwood: {p_dead}", 60)
+        engine.show_message(f"AI Deadwood: {ai_dead}", 90)
 
-        print("\n--- Round Results ---")
-        print("Your deadwood:", player_deadwood)
-        print("Computer deadwood:", ai_deadwood)
-        
-        if winner == "player":
-            print("You won the round!")
-        else:
-            print("GinBot won the round.")
+        engine.wait_for_click()
 
-        again = input("\nPlay another round? y/n: ").lower()
-        if again == "n":
-            break
+    engine.close()
         
 if __name__ == "__main__":
     main()
