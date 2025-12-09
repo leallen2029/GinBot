@@ -182,3 +182,33 @@ def card_to_file(card):
 
     
     return f"{rank_name}_of_{suit_name}.png"
+
+
+def update_best_score(new_score):
+    """
+    Load the old best score (from best_score.txt),
+    compare it to new_score, save the higher one,
+    and return the best score.
+    """
+    try:
+        f = open("best_score.txt", "r")
+        line = f.readline()
+        f.close()
+
+        line = line.strip() # remove spaces/newline
+        if line == "":
+            old_best = 0
+        else:
+            old_best = int(line)
+    except FileNotFoundError:
+        old_best = 0
+
+    # pick the larger of old_best and new_score
+    if new_score > old_best:
+        old_best = new_score
+
+    f = open("best_score.txt", "w")
+    f.write(str(old_best) + "\n")
+    f.close()
+
+    return old_best
