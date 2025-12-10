@@ -1,3 +1,4 @@
+'''Graphics'''
 import graphics
 from SetUp import card_to_file
 
@@ -6,13 +7,14 @@ CARD_HEIGHT = 120
 TABLE_COLOR = "darkgreen"
 
 class GameGraphics:
-    def __init__(self, width=900, height=600):
+    def __init__(self, width=950, height=700):
         self.win = graphics.GraphWin("Gin Rummy", width, height)
         self.win.setBackground(TABLE_COLOR)
         self.width = width
         self.height = height
         self.messages = []
         self.drawn_cards = []
+        self.discard_image = None
 
 #shows the text on screen
     def clear_messages(self):
@@ -20,8 +22,16 @@ class GameGraphics:
             m.undraw()
         self.messages = []
 
-    def show_message(self, text, y_offset=30):
-        msg = graphics.Text(graphics.Point(self.width//2, y_offset), text)
+    def show_message(self, text, pos=30):
+    # If pos is a tuple, treat it as (x, y)
+        if isinstance(pos, tuple):
+            x, y = pos
+        else:
+            # keep old behavior (centered horizontally, custom Y)
+            x = self.width // 2
+            y = pos
+
+        msg = graphics.Text(graphics.Point(x, y), text)
         msg.setSize(18)
         msg.setFill("white")
         msg.draw(self.win)
@@ -53,6 +63,29 @@ class GameGraphics:
         text.draw(self.win)
 
         return box
+    
+    def show_drawn_card(self, card):
+        self.clear_messages()
+        self.show_message("You drew:", (200, 75))
+        img = graphics.Image(graphics.Point(self.width//5, 200),
+                             f"cards/PNG-cards-1.3/{card_to_file(card)}")
+        img.draw(self.win)
+        self.drawn_cards.append(img)
+        
+    def draw_discard(self, card): 
+        """Draw exactly one discard pile card."""
+        # Remove previous discard card
+        if self.discard_image:
+            self.discard_image.undraw()
+
+        filename = card_to_file(card)
+        img = graphics.Image(
+            graphics.Point(self.width//2, 150),  
+            f"cards/PNG-cards-1.3/{filename}"
+        )
+        img.draw(self.win)
+        self.discard_image = img
+    
 
     def wait_for_click(self):
         return self.win.getMouse()

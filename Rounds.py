@@ -1,7 +1,10 @@
+'''rounds'''
+
 from SetUp import find_runs, make_deck, shuffle_deck, deal_hand, draw_from_stock, draw_from_discard, pick_melds_and_deadwood, deadwood_points
 from Interaction import show_hand, show_top_of_discard, ask_choice, ask_index
 from Computer import ai_draw_choice, ai_discard_index, ai_wants_to_knock
-
+from Interaction import engine
+from SetUp import organize_hand
 
 def start_round():
     '''make/shuffle a deck, deal 10 to the player and 10 to the computer'''
@@ -38,24 +41,35 @@ def player_turn(state):
     #gives choices for nect move
     choice = ask_choice("Draw or discard?", {"1": "Draw deck", "2": "Take discard", "3": "Knock"})
     
-    if choice == "3":
+    if choice == "3": #knock
         melds, leftover = pick_melds_and_deadwood(player)
         if deadwood_points(leftover) <=10:
             return "knock"
         else:
             print("You cant knock, the deadwood is too high :(")
             
-    if choice == "1":
+    if choice == "1": #discard
         card = draw_from_stock(deck)
-        print("You drew a", card) 
-    else:
+        engine.clear_messages()
+        engine.show_drawn_card(card)
+        engine.show_message("Click a card below to discard", 200)
+        engine.draw_hand(player)        # draw normal hand only
+        engine.show_drawn_card(card)
+    else: #
         card = discard.pop() #gets top of discard
-        
-    player.append(card) #adds card to player list
     
+    player.append(card)
+        
     index = ask_index("Which card would you like to discard?", len(player))
     discarded_card = player.pop(index)
     discard.append(discarded_card)
+    organized = organize_hand(player)
+    player[:] = organized
+    
+    engine.clear_messages()        #clears text
+    engine.clear_cards()           #removes all card images from screen
+    engine.show_message("Your Hand:", 50)
+    engine.draw_hand(player)
     
     return None
 

@@ -1,3 +1,5 @@
+'''interactions'''
+
 from SetUp import organize_hand
 from GameGraphics import GameGraphics
 engine = GameGraphics()
@@ -6,9 +8,6 @@ def show_hand(label, hand):
     '''prints cards and their index number
     EX Your hand: [0:A♠] [1:7♥] [2:7♣]'''
     
-    #reorganize hand list
-    organized = organize_hand(hand)
-    hand[:] = organized   #modify original list in-place
     
     #switches to graphics
     engine.clear_messages()

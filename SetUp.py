@@ -1,3 +1,5 @@
+'''setup'''
+
 import random
 
 
