@@ -53,10 +53,10 @@ def player_turn(state):
         engine.clear_messages()
         engine.show_drawn_card(card)
         engine.show_message("Click a card below to discard", 200)
-        engine.draw_hand(player)        # draw normal hand only
+        engine.draw_hand(player)#draw normal hand only
         engine.show_drawn_card(card)
-    else: #
-        card = discard.pop() #gets top of discard
+    else: 
+        card = discard.pop()#gets top of discard
     
     player.append(card)
         
@@ -66,8 +66,8 @@ def player_turn(state):
     organized = organize_hand(player)
     player[:] = organized
     
-    engine.clear_messages()        #clears text
-    engine.clear_cards()           #removes all card images from screen
+    engine.clear_messages()#clears text
+    engine.clear_cards()#removes all card images from screen
     engine.show_message("Your Hand:", 50)
     engine.draw_hand(player)
     

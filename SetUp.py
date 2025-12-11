@@ -43,7 +43,7 @@ def draw_from_discard(discard):
 
 def card_points(card):
     """Asigns each card with there gin rummy scoring: A = 1 & J/Q/K = 10"""
-    rank = card[:-1]  # removes suit
+    rank = card[:-1]  #removes suit
 
     #sets the rank and value
     if rank == "A":
@@ -205,7 +205,7 @@ def update_best_score(new_score):
     except FileNotFoundError:
         old_best = 0
 
-    # pick the larger of old_best and new_score
+    #pick the larger of old_best and new_score
     if new_score > old_best:
         old_best = new_score
 

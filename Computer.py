@@ -30,7 +30,7 @@ def ai_draw_choice(ai_hand, upcard):
     up_rank = get_rank(upcard)
     count = 0
     while count < len(ai_hand):
-        card = ai_hand[count] # idx of the first one in the computer's hand
+        card = ai_hand[count] #first one in the computer's hand
         
         if get_rank(card) == up_rank:
             return "discard"

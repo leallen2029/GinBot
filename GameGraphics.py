@@ -24,13 +24,13 @@ class GameGraphics:
         self.discard_image = None
         self.win.setBackground(TABLE_COLOR)
 
-    # Title
+    #Title
         title = graphics.Text(graphics.Point(self.width//2, 80), "Gin Rummy")
         title.setSize(36)
         title.setFill("white")
         title.draw(self.win)
 
-    # Rules text
+    #Rules text
         rules_text = (
             "Basic Rules:\n"
             "• You start with 10 cards.\n"
@@ -47,7 +47,7 @@ class GameGraphics:
         rules.draw(self.win)
         
         
-    # Highest score
+    #Highest score
         best = update_best_score(0)
         high_text = f"Highest score: {best}"
         high_label = graphics.Text(
@@ -59,7 +59,7 @@ class GameGraphics:
         
     
 
-    # Play button
+    #Play button
         play_btn = graphics.Rectangle(
             graphics.Point(325, 350),
             graphics.Point(625, 420)
@@ -73,7 +73,7 @@ class GameGraphics:
         
 
 
-    # Quit button
+    #Quit button
         quit_btn = graphics.Rectangle(
             graphics.Point(325, 450),
             graphics.Point(625, 520)
@@ -85,7 +85,7 @@ class GameGraphics:
         quit_label.setSize(20)
         quit_label.draw(self.win)
 
-    # Event loop
+    #Event loop
         while True:
             click = self.win.getMouse()
             x, y = click.getX(), click.getY()
@@ -104,11 +104,11 @@ class GameGraphics:
         self.messages = []
 
     def show_message(self, text, pos=30):
-    # If pos is a tuple, treat it as (x, y)
+    #if pos is a tuple, treat it as (x, y), fixes error
         if isinstance(pos, tuple):
             x, y = pos
         else:
-            # keep old behavior (centered horizontally, custom Y)
+            #keep old behavior (centered horizontally, custom Y)
             x = self.width // 2
             y = pos
 
@@ -162,7 +162,7 @@ class GameGraphics:
         
     def draw_discard(self, card): 
         """Draw exactly one discard pile card."""
-        # Remove previous discard card
+        #remove previous discard card
         if self.discard_image:
             self.discard_image.undraw()
 

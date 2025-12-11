@@ -5,7 +5,7 @@ from Rounds import play_round
 from Interaction import engine
 
 def main():
-    # Show home screen first
+    #show home screen first
     choice = engine.show_home_screen()
     if choice == "quit":
         engine.close()
