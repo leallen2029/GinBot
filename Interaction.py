@@ -4,6 +4,60 @@ from SetUp import organize_hand
 from GameGraphics import GameGraphics
 engine = GameGraphics()
 
+
+class Button:
+    def __init__(self, win, x1, y1, x2, y2, label):
+        self.win = win
+        self.x1, self.y1 = x1, y1
+        self.x2, self.y2 = x2, y2
+        self.label = label
+
+        self.rect = graphics.Rectangle(graphics.Point(x1, y1),
+                                       graphics.Point(x2, y2))
+        self.rect.setFill("gray20")
+        self.rect.draw(win)
+
+        self.text = graphics.Text(
+            graphics.Point((x1 + x2)//2, (y1 + y2)//2),
+            label
+        )
+        self.text.setSize(20)
+        self.text.setFill("white")
+        self.text.draw(win)
+
+    def clicked(self, p):
+        return (self.x1 <= p.getX() <= self.x2 and
+                self.y1 <= p.getY() <= self.y2)
+
+def show_home_screen(self):
+    self.win.delete("all")
+    self.messages.clear()
+
+    title = graphics.Text(graphics.Point(self.width//2, 100), "Gin Rummy")
+    title.setSize(36)
+    title.setFill("white")
+    title.draw(self.win)
+
+    rules = graphics.Text(
+        graphics.Point(self.width//2, 200),
+        "Form melds. Reduce deadwood. Knock at 10 or less.\nFirst to 100 wins."
+    )
+    rules.setSize(18)
+    rules.setFill("white")
+    rules.draw(self.win)
+
+    play_btn = Button(self.win, 200, 300, 450, 360, "Play Game")
+    quit_btn = Button(self.win, 200, 380, 450, 440, "Quit")
+
+    while True:
+        click = self.win.getMouse()
+        if play_btn.clicked(click):
+            return "play"
+        if quit_btn.clicked(click):
+            return "quit"
+
+
+
 def show_hand(label, hand):
     '''prints cards and their index number
     EX Your hand: [0:A♠] [1:7♥] [2:7♣]'''

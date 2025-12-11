@@ -4,9 +4,12 @@
 from Rounds import play_round
 from Interaction import engine
 
-
-
 def main():
+    # Show home screen first
+    choice = engine.show_home_screen()
+    if choice == "quit":
+        engine.close()
+        return
 
     player_name = "Player"
 
@@ -21,6 +24,6 @@ def main():
         engine.wait_for_click()
 
     engine.close()
-        
+
 if __name__ == "__main__":
     main()
