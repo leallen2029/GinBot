@@ -46,18 +46,6 @@ class GameGraphics:
         rules.setFill("white")
         rules.draw(self.win)
         
-        
-    #Highest score
-        best = update_best_score(0)
-        high_text = f"Highest score: {best}"
-        high_label = graphics.Text(
-            graphics.Point(self.width//2, 330), high_text
-        )
-        high_label.setSize(18)
-        high_label.setFill("white")
-        high_label.draw(self.win)
-        
-    
 
     #Play button
         play_btn = graphics.Rectangle(
