@@ -1,6 +1,66 @@
 # GinBot
 Final project replicating Gin Rummy
 
+Team Information: B1 Landree and Madeleine
+
+Files required/included in your project, and a description of their contents: 
+
+Interaction.py:
+Handles user interface through text.
+Includes functions for:
+	•	Showing the player’s hand with indices
+	•	Showing the top of the discard pile
+	•	Asking the user to choose actions
+	•	Asking the user to choose a card index to discard
+
+This file keeps all input/output code organized and easy to modify.
+
+Main.py:
+Our main calling file of the program.
+	•	Displays the main menu (Play / Instructions / High Scores / Quit)
+	•	Calls play_round() to start a game
+	•	Calls functions for showing instructions and high scores
+	•	Controls the overall flow of the project
+
+Computer.py:
+Controls the computer player’s strategy.
+Includes functions for:
+	•	Choosing to draw from the deck or the discard pile
+	•	Choosing which card to discard (avoids breaking pairs, removes high-value cards)
+	•	Deciding when the computer should knock
+
+This creates a realistic, but beatable AI opponent.
+
+GameGraphics.py: Turns code from the other files into a graphic expression of Gin Rummy, including imported card photos, sorted cards, and a green background.  
+
+graphics.py: A simple object oriented graphics library
+
+Rounds.py
+Runs one full round of Gin Rummy.
+Includes functions for:
+	•	Setting up the round (deal cards, create discard pile)
+	•	Player turn logic
+	•	Computer turn logic
+	•	Determining when the round is over
+	•	Scoring the round and deciding a winner
+	•	Running turns in a loop until the round ends
+
+This file coordinates all other modules.
+
+SetUp.py
+Handles all card and scoring logic.
+Includes functions for:
+	•	Creating and shuffling the deck
+	•	Dealing hands and drawing cards
+	•	Calculating point values (A = 1, J/Q/K = 10, etc.)
+	•	Detecting sets (3+ same rank)
+	•	Detecting runs (3+ consecutive cards in a suit)
+	•	Separating a hand into melds and deadwood
+	•	Calculating deadwood points
+	•	Checking whether a hand is allowed to knock
+
+This file contains the most important rules of Gin Rummy.
+
 
 ~Basic Instructions and Calculations For Our Version of Gin Rummy~
 
@@ -58,7 +118,7 @@ Winning a round:
 	- If the knocker has less deadwood, the person who knocked wins the round.
 	- If the other player has equal or less deadwood, the knocker loses the round.
 
-README.md: A basic readme file including:
-– team information
-– a list of all files required/included in your project, and a description of their contents
-– an explanation of how to run and interact with your project (similar to a user guide)
+
+User manual: 
+
+Once you run the game a screen will appear with 
