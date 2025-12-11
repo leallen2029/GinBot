@@ -3,7 +3,7 @@ Final project replicating Gin Rummy
 
 Team Information: B1 Landree and Madeleine
 
-Files required/included in your project, and a description of their contents: 
+Files required/included, and a description of their contents: 
 
 Interaction.py:
 Handles user interface through text.
@@ -119,7 +119,8 @@ Winning a round:
 	- If the other player has equal or less deadwood, the knocker loses the round.
 
 
-User manual: 
+
+User Manual: 
 
 Once you run the game a screen will appear with :
 Basic Rules
