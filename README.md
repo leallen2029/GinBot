@@ -121,4 +121,16 @@ Winning a round:
 
 User manual: 
 
-Once you run the game a screen will appear with 
+Once you run the game a screen will appear with :
+Basic Rules
+Highest Score
+Play Game
+Quit
+
+	•	Click “Play Game” to start.
+	•	You are given 10 cards; these are your randomly drawn starting cards.
+	•	You will also see a card under “Take Discard,” and this is the top card of the discard pile, which you can choose to take instead of drawing from the deck.
+	•	If you choose “Draw from Deck,” the card you draw will appear in the “Draw Deck” section.
+	•	After drawing, you must choose one card to discard from your hand.
+	•	You repeat this process (draw, then discard) while trying to form melds (groups of cards that belong together).
+	•	Once your hand is good enough and your deadwood is low enough, you can click “Knock” to end the round.
