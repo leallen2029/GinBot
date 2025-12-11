@@ -42,7 +42,7 @@ def draw_from_discard(discard):
     return discard.pop()
 
 def card_points(card):
-    """Asigns each card with there gin rummy scoring: A = 1 & J/Q/K = 10"""
+    """asigns each card with there gin rummy scoring: A = 1 & J/Q/K = 10"""
     rank = card[:-1]  #removes suit
 
     #sets the rank and value
@@ -53,7 +53,7 @@ def card_points(card):
     return int(rank)
 
 def find_sets(hand):
-    """Return all 3+ of a kind melds"""
+    """returns all 3+ of a kind melds"""
     rank_groups = {}
     for card in hand:
         rank = card[:-1]
@@ -103,7 +103,7 @@ def find_runs(hand):
     return all_runs
 
 def pick_melds_and_deadwood(hand):
-    """Choose all runs + sets and uses runs first (longest melds),
+    """chooses all runs + sets and uses runs first (longest melds),
         then sets.Returns (list_of_melds, leftover_cards) """
     hand_copy = hand[:]
     melds = []
@@ -131,7 +131,7 @@ def pick_melds_and_deadwood(hand):
 
 def organize_hand(hand):
     """
-    Groups runs and sets first, then leftover cards.
+    groups runs and sets first, then leftover cards.
     Uses your existing pick_melds_and_deadwood() function.
     """
     melds, leftover = pick_melds_and_deadwood(hand)
@@ -188,7 +188,7 @@ def card_to_file(card):
 
 def update_best_score(new_score):
     """
-    Load the old best score (from best_score.txt),
+    loads the old best score (from best_score.txt),
     compare it to new_score, save the higher one,
     and return the best score.
     """
