@@ -1,6 +1,7 @@
 '''Graphics'''
 import graphics
 from SetUp import card_to_file
+from SetUp import update_best_score
 
 CARD_WIDTH = 80
 CARD_HEIGHT = 120
@@ -44,6 +45,19 @@ class GameGraphics:
         rules.setSize(18)
         rules.setFill("white")
         rules.draw(self.win)
+        
+        
+    # Highest score
+        best = update_best_score(0)
+        high_text = f"Highest score: {best}"
+        high_label = graphics.Text(
+            graphics.Point(self.width//2, 330), high_text
+        )
+        high_label.setSize(18)
+        high_label.setFill("white")
+        high_label.draw(self.win)
+        
+    
 
     # Play button
         play_btn = graphics.Rectangle(
@@ -56,6 +70,8 @@ class GameGraphics:
         play_label = graphics.Text(graphics.Point(475, 385), "Play Game")
         play_label.setSize(20)
         play_label.draw(self.win)
+        
+
 
     # Quit button
         quit_btn = graphics.Rectangle(
