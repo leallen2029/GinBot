@@ -1,7 +1,6 @@
 '''Graphics'''
 import graphics
 from SetUp import card_to_file
-from SetUp import update_best_score
 
 CARD_WIDTH = 80
 CARD_HEIGHT = 120
