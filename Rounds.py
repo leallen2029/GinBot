@@ -46,7 +46,10 @@ def player_turn(state):
         if deadwood_points(leftover) <=10:
             return "knock"
         else:
-            print("You cant knock, the deadwood is too high :(")
+            engine.clear_messages()
+            engine.show_message("You can't knock — deadwood is over 10!", 300)
+            engine.wait_for_click()
+            return None
             
     if choice == "1": #discard
         card = draw_from_stock(deck)
@@ -54,7 +57,7 @@ def player_turn(state):
         engine.show_drawn_card(card)
         engine.show_message("Click a card below to discard", 200)
         engine.draw_hand(player)#draw normal hand only
-        engine.show_drawn_card(card)
+        
     else: 
         card = discard.pop()#gets top of discard
     
